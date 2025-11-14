@@ -12,18 +12,18 @@ function dayKeySuffix(date = new Date()) {
 
 export async function getTotal() {
   const key = TOTAL_KEY.replace('YYYYMMDD', dayKeySuffix())
-  const r = await Storage.get({ key })
+  const r = await Preferences.get({ key })
   return r.value ? Number(r.value) : 0
 }
 
 export async function setTotal(total) {
   const key = TOTAL_KEY.replace('YYYYMMDD', dayKeySuffix())
-  await Preferences.get({ key, value: String(total) })
+  await Preferences.set({ key, value: String(total) })
 }
 
 export async function getHistory() {
   const key = HISTORY_KEY.replace('YYYYMMDD', dayKeySuffix())
-  const r = await Storage.get({ key })
+  const r = await Preferences.get({ key })
   return r.value ? JSON.parse(r.value) : []
 }
 
@@ -31,11 +31,11 @@ export async function pushHistory(entry) {
   const key = HISTORY_KEY.replace('YYYYMMDD', dayKeySuffix())
   const list = await getHistory()
   list.unshift(entry)
-  await Preferences.get({ key, value: JSON.stringify(list) })
+  await Preferences.set({ key, value: JSON.stringify(list) })
 }
 
 export async function clearToday() {
   const t = dayKeySuffix()
-  await Storage.remove({ key: TOTAL_KEY.replace('YYYYMMDD', t) })
-  await Storage.remove({ key: HISTORY_KEY.replace('YYYYMMDD', t) })
+  await Preferences.remove({ key: TOTAL_KEY.replace('YYYYMMDD', t) })
+  await Preferences.remove({ key: HISTORY_KEY.replace('YYYYMMDD', t) })
 }

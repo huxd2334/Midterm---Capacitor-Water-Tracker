@@ -1,25 +1,273 @@
-:root{
-  --bg: #fffef7;
-  --primary: #2dbb6f;
-  --accent: #23a6f0;
-  --muted: #6b7280;
+/* === Bảng màu & Biến CSS (Hỗ trợ Light/Dark Mode) === */
+:root {
+  /* Chế độ Sáng (Light Mode) */
+  --bg: #f8faff; /* Nền trắng xanh rất nhạt */
+  --text: #0f172a; /* Chữ đen (slate) */
+  --text-muted: #64748b; /* Chữ phụ (xám) */
+  --card-bg: #ffffff; /* Nền thẻ (trắng) */
+  --primary: #23a6f0; /* Xanh dương (nước) */
+  --primary-hover: #1f90d1; /* Xanh dương đậm hơn */
+  --primary-text: #ffffff; /* Chữ trên nền primary */
+  --secondary-bg: #f1f5f9; /* Nền nút phụ */
+  --secondary-hover: #e2e8f0; /* Hover nút phụ */
+  --border: #e2e8f0; /* Viền */
+  --shadow: 0 8px 24px rgba(21, 41, 72, 0.08); /* Đổ bóng */
+  --danger: #ef4444; /* Màu đỏ cho hành động nguy hiểm */
+  --danger-hover: #dc2626;
 }
-body{font-family:Inter, system-ui, Arial, sans-serif;background:var(--bg);margin:0;color:#0f172a}
-.app{max-width:480px;margin:0 auto;padding:12px}
-.topbar{display:flex;justify-content:space-between;align-items:center}
-.topbar h1{font-size:1.2rem;margin:0}
-.topbar nav a{margin-left:8px;text-decoration:none;color:var(--accent)}
-.page{padding:18px}
-.center{display:flex;align-items:center;justify-content:center}
-.card{background:white;border-radius:12px;padding:18px;box-shadow:0 6px 18px rgba(16,24,40,0.06);width:100%}
-.label{color:var(--muted);margin:0}
-.total{font-size:2.4rem;margin:6px 0}
-.btn-row{display:flex;gap:8px;margin-top:12px}
-.btn{flex:1;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);background:#f8fafc}
-.btn.primary{background:linear-gradient(90deg,var(--primary),#36c48c);color:white;border:none}
-.actions{display:flex;justify-content:space-between;margin-top:12px}
-.link{background:none;border:none;color:var(--accent);text-decoration:underline;cursor:pointer}
-.history-list{list-style:none;padding:0;margin:8px 0}
-.history-item{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed #efefef}
-.muted{color:var(--muted)}
-.footer{text-align:center;color:var(--muted);font-size:0.8rem;padding:12px}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Chế độ Tối (Dark Mode) */
+    --bg: #121826; /* Nền xanh đen */
+    --text: #f0f5fa; /* Chữ trắng nhạt */
+    --text-muted: #8a99af; /* Chữ phụ (xám nhạt) */
+    --card-bg: #1f2a40; /* Nền thẻ (xanh đậm) */
+    --primary: #23a6f0; /* Vẫn giữ màu xanh dương */
+    --primary-hover: #38b0f3; /* Hover xanh sáng hơn */
+    --primary-text: #ffffff;
+    --secondary-bg: #30405c; /* Nền nút phụ tối */
+    --secondary-hover: #3d5073; /* Hover nút phụ tối */
+    --border: #30405c; /* Viền tối */
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* Đổ bóng tối */
+    --danger: #f87171; /* Đỏ nhạt cho dark mode */
+    --danger-hover: #ef4444;
+  }
+}
+
+/* === Cài đặt Chung === */
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+    'Helvetica Neue', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* === Bố cục App === */
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px;
+  min-height: calc(100vh - 32px); /* Đảm bảo footer luôn ở dưới */
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1; /* Đẩy footer xuống dưới */
+  padding: 24px 0;
+}
+
+/* === Header (Topbar) === */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topbar nav {
+  display: flex;
+  gap: 4px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-link:hover {
+  background: var(--secondary-bg);
+  color: var(--text);
+}
+
+/* Style cho NavLink đang active */
+.nav-link.active {
+  color: var(--primary);
+  background: var(--secondary-bg);
+}
+
+/* === Trang chủ (Home Page) === */
+.home-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px; /* Tăng khoảng cách giữa các khối */
+  text-align: center;
+}
+
+/* Vòng tròn hiển thị tổng */
+.total-display {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 10px solid var(--bg); /* Tạo hiệu ứng viền nổi */
+  outline: 1px solid var(--border);
+}
+
+.total-display .label {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.total-display .total {
+  font-size: 3.5rem; /* Tăng cỡ chữ */
+  font-weight: 800; /* Đậm hơn */
+  color: var(--primary);
+  margin: 4px 0 0 0;
+}
+
+/* === Hàng nút bấm === */
+.btn-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* Chia 3 cột đều */
+  gap: 12px;
+  width: 100%;
+  max-width: 380px; /* Giới hạn độ rộng */
+}
+
+.btn {
+  padding: 16px;
+  border-radius: 12px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  /* Nút mặc định (secondary) */
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn:hover {
+  background: var(--secondary-bg);
+  transform: translateY(-2px); /* Hiệu ứng nhấc lên */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.btn.primary {
+  background: var(--primary);
+  color: var(--primary-text);
+  border: 1px solid var(--primary);
+}
+
+.btn.primary:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+  box-shadow: 0 4px 12px rgba(35, 166, 240, 0.3);
+}
+
+/* === Hành động (Links) === */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 380px;
+  margin-top: 16px;
+}
+
+.link {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 8px;
+  transition: color 0.2s;
+}
+
+.link:hover {
+  color: var(--primary);
+}
+
+.link.danger {
+  color: var(--danger);
+}
+.link.danger:hover {
+  color: var(--danger-hover);
+}
+
+
+/* === Trang Lịch sử (History Page) === */
+.card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 20px 24px;
+  box-shadow: var(--shadow);
+  width: 100%;
+  box-sizing: border-box; /* Đảm bảo padding không làm vỡ layout */
+}
+
+.history-page h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 8px;
+  border-bottom: 1px dashed var(--border);
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.history-item span:first-child {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.muted {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* === Footer === */
+.footer {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  padding-top: 24px;
+}

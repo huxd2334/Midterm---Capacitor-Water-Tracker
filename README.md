@@ -1,12 +1,12 @@
-# Water Tracker (JS/JSX) - Hướng dẫn chạy
-##
+# Water Tracker (Capacitor + React, JS/JSX)
+## Thông tin sinh viên
 - Họ tên: Lê Cẩm Bình
 - MSSV: 22IT.EB007
 - Lớp: 22KIT
 - Học phần: Phát triển ứng dụng di động đa nền tảng (2)
 - Course: Mobile Cross-Platform Development (2)
 
-# Water Tracker (Capacitor + React, JS/JSX)
+
 ## Mô tả
 - Ứng dụng theo dõi nước uống nhỏ gọn (JS/JSX) với 2 màn hình:
 
@@ -14,6 +14,7 @@
 
     - Màn hình lịch sử: danh sách thời gian + lượng nước đã thêm trong ngày.
 ## Cấu trúc thư mục
+```
 water-tracker/
 ├─ package.json
 ├─ capacitor.config.ts
@@ -28,6 +29,7 @@ water-tracker/
 │  └─ History.jsx
 ├─ styles.css
 └─ utils.js
+```
 ## Yêu cầu
 - Node.js 16+ (khuyến nghị 18+)
 - npm

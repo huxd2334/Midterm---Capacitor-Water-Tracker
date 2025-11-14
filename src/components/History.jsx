@@ -9,17 +9,17 @@ export default function History() {
   }, [])
 
   return (
-    <div className="page">
-      <h2>Lịch sử</h2>
+    <>
       {list.length === 0 && <p className="muted">Chưa có lần uống nào hôm nay.</p>}
+
       <ul className="history-list">
         {list.map(item => (
           <li key={item.id} className="history-item">
-            <span className="time">{new Date(item.t).toLocaleTimeString()}</span>
-            <span className="amount">+{item.amount} ml</span>
+            <span className="muted">{new Date(item.t).toLocaleTimeString()}</span>
+            <span>+{item.amount} ml</span>
           </li>
         ))}
       </ul>
-    </div>
+    </>
   )
 }
