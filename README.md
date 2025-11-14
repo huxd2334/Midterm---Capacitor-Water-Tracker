@@ -4,8 +4,6 @@
 - MSSV: 22IT.EB007
 - Lớp: 22KIT
 - Học phần: Phát triển ứng dụng di động đa nền tảng (2)
-- Course: Mobile Cross-Platform Development (2)
-
 
 ## Mô tả
 - Ứng dụng theo dõi nước uống nhỏ gọn (JS/JSX) với 2 màn hình:
@@ -45,6 +43,13 @@ water-tracker/
 3. `npx cap sync`
 4. `npx cap open android` hoặc `npx cap open ios` để mở Android Studio / Xcode
 5. Build / Run trên emulator hoặc thiết bị thật
+
+## Demo
+<p align="center" style="max-width:1000px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;">
+  <img src="./screenshots/img.png" style="width:230px;max-width:100%;height:auto;border-radius:12px;border:2px solid #ccc;" loading="lazy" decoding="async">
+  <img src="./screenshots/img_1.png" style="width:230px;max-width:100%;height:auto;border-radius:12px;" loading="lazy" decoding="async">
+  <img src="./screenshots/img_2.png" style="width:230px;max-width:100%;height:auto;border-radius:12px;" loading="lazy" decoding="async">
+</p>
 
 # React + Vite
 
